@@ -40,7 +40,7 @@ Resources:
     Properties:
       Name: !Sub '${EnvironmentName}/appointy/app'
       Description: Application secrets (JWT, Cloudinary, Razorpay, Admin credentials)
-      SecretString: '{"JWT_SECRET":"CHANGE_ME","ADMIN_EMAIL":"admin@appointy.com","ADMIN_PASSWORD":"CHANGE_ME","CLOUDINARY_NAME":"CHANGE_ME","CLOUDINARY_API_KEY":"CHANGE_ME","CLOUDINARY_SECRET_KEY":"CHANGE_ME","RAZORPAY_API_KEY":"CHANGE_ME","RAZORPAY_KEY_SECRET":"CHANGE_ME"}'
+      SecretString: '{"JWT_SECRET":"CHANGE_ME","ADMIN_EMAIL":"admin@appointy.com","ADMIN_PASSWORD":"CHANGE_ME","CLOUDINARY_NAME":"CHANGE_ME","CLOUDINARY_API_KEY":"CHANGE_ME","CLOUDINARY_SECRET_KEY":"CHANGE_ME","RAZORPAY_KEY_ID":"CHANGE_ME","RAZORPAY_KEY_SECRET":"CHANGE_ME"}'
 
   # ==================== DOCUMENTDB ====================
 

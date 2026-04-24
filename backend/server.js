@@ -29,6 +29,10 @@ app.get("/", (req, res) => {
   res.send("API Working")
 });
 
+app.get("/api/health", (req, res) => {
+  res.status(200).json({ status: "ok" })
+});
+
 app.get('/test-db', (req, res) => {
   const state = mongoose.connection.readyState;
   // 0 = disconnected, 1 = connected, 2 = connecting, 3 = disconnecting

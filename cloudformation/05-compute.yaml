@@ -213,7 +213,7 @@ Resources:
             dnf update -y
 
             # Install Node.js 20 LTS via NodeSource
-            dnf install -y curl
+            # AL2023 has curl-minimal pre-installed; use it directly (no dnf install curl)
             curl -fsSL https://rpm.nodesource.com/setup_20.x | bash -
             dnf install -y nodejs
 

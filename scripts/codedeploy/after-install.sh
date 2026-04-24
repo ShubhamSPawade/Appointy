@@ -45,13 +45,20 @@ CLOUDINARY_SECRET_KEY=$(echo "$APP_SECRET" | python3 -c "import sys,json; print(
 RAZORPAY_KEY_ID=$(echo "$APP_SECRET" | python3 -c "import sys,json; print(json.load(sys.stdin)['RAZORPAY_KEY_ID'])")
 RAZORPAY_KEY_SECRET=$(echo "$APP_SECRET" | python3 -c "import sys,json; print(json.load(sys.stdin)['RAZORPAY_KEY_SECRET'])")
 
-# DocumentDB connection string with TLS
-MONGODB_URI="mongodb://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/appointy?tls=true&tlsCAFile=/opt/appointy/global-bundle.pem&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
+# Download DocumentDB CA bundle
+if [ ! -f /opt/appointy/global-bundle.pem ]; then
+    wget -q -O /opt/appointy/global-bundle.pem \
+        https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
+fi
+
+# DocumentDB connection string
+MONGODB_URI="mongodb://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/appointy?replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
 
 # Write environment file
 cat > /opt/appointy/backend/.env << ENVEOF
 PORT=4000
 MONGODB_URI=${MONGODB_URI}
+TLS_CA_FILE=/opt/appointy/global-bundle.pem
 JWT_SECRET=${JWT_SECRET}
 ADMIN_EMAIL=${ADMIN_EMAIL}
 ADMIN_PASSWORD=${ADMIN_PASSWORD}
@@ -63,11 +70,5 @@ RAZORPAY_KEY_SECRET=${RAZORPAY_KEY_SECRET}
 ENVEOF
 
 chmod 600 /opt/appointy/backend/.env
-
-# Download DocumentDB CA bundle if not present
-if [ ! -f /opt/appointy/global-bundle.pem ]; then
-    wget -q -O /opt/appointy/global-bundle.pem \
-        https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
-fi
 
 echo "=== AfterInstall: Complete ==="

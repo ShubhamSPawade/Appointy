@@ -21,8 +21,6 @@ Environment=NODE_ENV=production
 
 # Security hardening
 NoNewPrivileges=true
-ProtectSystem=strict
-ReadWritePaths=/opt/appointy/backend /tmp /var/log
 
 # Resource limits
 LimitNOFILE=65536
@@ -35,5 +33,16 @@ EOF
 systemctl daemon-reload
 systemctl enable appointy-backend
 systemctl start appointy-backend
+
+# Wait briefly and verify the service is running
+sleep 3
+if systemctl is-active --quiet appointy-backend; then
+    echo "=== ApplicationStart: Service is running ==="
+else
+    echo "=== ApplicationStart: Service FAILED to start ==="
+    systemctl status appointy-backend --no-pager || true
+    journalctl -u appointy-backend --no-pager -n 30 || true
+    exit 1
+fi
 
 echo "=== ApplicationStart: Complete ==="

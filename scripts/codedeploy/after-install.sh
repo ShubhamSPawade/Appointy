@@ -54,7 +54,8 @@ fi
 # DocumentDB connection string
 # MONGODB_URI="mongodb://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/appointy?replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
 # MONGODB_URI="mongodb://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/appointy?ssl=true&tlsCAFile=/opt/appointy/backend/rds-combined-ca-bundle.pem&retryWrites=false&authMechanism=SCRAM-SHA-1
-MONGODB_URI="mongodb://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/appointy?replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false&tls=true&tlsCAFile=/opt/appointy/backend/rds-combined-ca-bundle.pem&authMechanism=SCRAM-SHA-1
+MONGODB_URI="mongodb://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/appointy?tls=true&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false&authSource=admin&tlsCAFile=/opt/appointy/global-bundle.pem"
+
 
 # Write environment file
 cat > /opt/appointy/backend/.env << ENVEOF

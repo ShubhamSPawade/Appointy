@@ -42,7 +42,7 @@ ADMIN_PASSWORD=$(echo "$APP_SECRET" | python3 -c "import sys,json; print(json.lo
 CLOUDINARY_NAME=$(echo "$APP_SECRET" | python3 -c "import sys,json; print(json.load(sys.stdin)['CLOUDINARY_NAME'])")
 CLOUDINARY_API_KEY=$(echo "$APP_SECRET" | python3 -c "import sys,json; print(json.load(sys.stdin)['CLOUDINARY_API_KEY'])")
 CLOUDINARY_SECRET_KEY=$(echo "$APP_SECRET" | python3 -c "import sys,json; print(json.load(sys.stdin)['CLOUDINARY_SECRET_KEY'])")
-RAZORPAY_API_KEY=$(echo "$APP_SECRET" | python3 -c "import sys,json; print(json.load(sys.stdin)['RAZORPAY_API_KEY'])")
+RAZORPAY_KEY_ID=$(echo "$APP_SECRET" | python3 -c "import sys,json; print(json.load(sys.stdin)['RAZORPAY_KEY_ID'])")
 RAZORPAY_KEY_SECRET=$(echo "$APP_SECRET" | python3 -c "import sys,json; print(json.load(sys.stdin)['RAZORPAY_KEY_SECRET'])")
 
 # DocumentDB connection string with TLS
@@ -58,7 +58,7 @@ ADMIN_PASSWORD=${ADMIN_PASSWORD}
 CLOUDINARY_NAME=${CLOUDINARY_NAME}
 CLOUDINARY_API_KEY=${CLOUDINARY_API_KEY}
 CLOUDINARY_SECRET_KEY=${CLOUDINARY_SECRET_KEY}
-RAZORPAY_KEY_ID=${RAZORPAY_API_KEY}
+RAZORPAY_KEY_ID=${RAZORPAY_KEY_ID}
 RAZORPAY_KEY_SECRET=${RAZORPAY_KEY_SECRET}
 ENVEOF
 

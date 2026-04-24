@@ -7,7 +7,7 @@ MAX_RETRIES=10
 RETRY_INTERVAL=3
 
 for i in $(seq 1 $MAX_RETRIES); do
-    HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:4000/api/health || echo "000")
+    HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:4000/api/health) || HTTP_CODE="000"
 
     if [ "$HTTP_CODE" = "200" ]; then
         echo "Health check passed (attempt $i)"

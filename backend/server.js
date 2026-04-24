@@ -17,7 +17,10 @@ connectCloudinary()
 
 // middlewares
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+  origin: true,
+  credentials: true
+}))
 
 // api endpoints
 app.use('/api/admin', adminRouter)
@@ -31,16 +34,6 @@ app.get("/", (req, res) => {
 
 app.get("/api/health", (req, res) => {
   res.status(200).json({ status: "ok" })
-});
-
-app.get('/test-db', (req, res) => {
-  const state = mongoose.connection.readyState;
-  // 0 = disconnected, 1 = connected, 2 = connecting, 3 = disconnecting
-  if (state === 1) {
-    res.send('Database is connected');
-  } else {
-    res.status(500).send('Database is NOT connected');
-  }
 });
 
 

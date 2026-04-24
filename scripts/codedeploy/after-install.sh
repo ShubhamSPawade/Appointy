@@ -46,7 +46,7 @@ RAZORPAY_KEY_ID=$(echo "$APP_SECRET" | python3 -c "import sys,json; print(json.l
 RAZORPAY_KEY_SECRET=$(echo "$APP_SECRET" | python3 -c "import sys,json; print(json.load(sys.stdin)['RAZORPAY_KEY_SECRET'])")
 
 # DocumentDB connection string with TLS
-MONGODB_URI="mongodb://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/?tls=true&tlsCAFile=/opt/appointy/global-bundle.pem&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
+MONGODB_URI="mongodb://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/appointy?tls=true&tlsCAFile=/opt/appointy/global-bundle.pem&replicaSet=rs0&readPreference=secondaryPreferred&retryWrites=false"
 
 # Write environment file
 cat > /opt/appointy/backend/.env << ENVEOF
